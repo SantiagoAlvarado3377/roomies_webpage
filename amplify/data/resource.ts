@@ -7,24 +7,43 @@ specifies that any user authenticated via an API key can "create", "read",
 "update", and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
+  
   Todo: a
     .model({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+
+
+
+  Podcast: a.customType({
+    title: a.string(),
+    url: a.string(),
+    content: a.string()
+  }),
+
+  
 });
+
+
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
+  // Switch default to Cognito User Pools authentication so only signed-in users
+  // can use the Data API by default. Keep apiKey if you still need public read-only
+  // access, but avoid using apiKey for create operations.
   authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
+  defaultAuthorizationMode: "userPool",
+    // Optionally keep an apiKey for public (read-only) access; comment out if not needed
     apiKeyAuthorizationMode: {
       expiresInDays: 30,
     },
   },
 });
+
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a
