@@ -7,11 +7,5 @@ export const backend = defineBackend({
   auth,
   data,
 });
+//add backend resources here
 
-const externalDataSourcesStack =  backend.createStack('MyExternalDataSourcesStack');
-
-const externalTable = aws_dynamodb.Table.fromTableName(
-  externalDataSourcesStack,
-  "MyExternalPostTable",
-  "PostTable"
-);
