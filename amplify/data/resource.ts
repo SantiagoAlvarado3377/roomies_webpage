@@ -16,11 +16,20 @@ const schema = a.schema({
 
 
 
-  Podcast: a.customType({
+  Blog: a.customType({
     title: a.string(),
     url: a.string(),
-    content: a.string()
+    content: a.string(),
+    author: a.string(),
+    postedDate: a.date(),
+    updateDate: a.date(),
+    summary: a.string(),
+    categories: a.ref('Category').array(),
   }),
+
+  Category: a.customType({
+    name: a.string(),
+  })
 
   
 });
