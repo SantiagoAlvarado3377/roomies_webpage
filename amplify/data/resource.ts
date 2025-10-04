@@ -51,7 +51,7 @@ export const data = defineData({
   // can use the Data API by default. Keep apiKey if you still need public read-only
   // access, but avoid using apiKey for create operations.
   authorizationModes: {
-  defaultAuthorizationMode: "apiKey",
+  defaultAuthorizationMode: "userPool",
     // Optionally keep an apiKey for public (read-only) access; comment out if not needed
     apiKeyAuthorizationMode: {
       expiresInDays: 30,
