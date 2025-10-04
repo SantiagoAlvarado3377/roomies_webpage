@@ -1,5 +1,6 @@
 import Nav from "./components/nav";
 import Footer from "./components/footer";
+import {subscribe} from './actions/actions';
 
 export default function HomePage() {
   return (
@@ -24,8 +25,8 @@ export default function HomePage() {
           </p>
 
           <form
-            action="/api/subscribe"
             method="post"
+            action={subscribe}
             className="mx-auto max-w-xl"
             aria-label="Subscribe to Roomies updates"
           >
