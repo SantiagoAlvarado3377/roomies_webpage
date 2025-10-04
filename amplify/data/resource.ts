@@ -29,7 +29,12 @@ const schema = a.schema({
 
   Category: a.customType({
     name: a.string(),
-  })
+  }),
+
+  Email: a.customType({
+    email: a.string(),
+    sentDate: a.date(),
+  }),
 
   
 });
