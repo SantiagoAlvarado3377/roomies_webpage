@@ -4,7 +4,7 @@ export async function createEmail(email: string) {
   try {
     const { data: createdEmail, errors } = await client.models.Email.create({
       email,
-      sentDate: new Date(),
+      sentDate: new Date().toISOString(),
     });
 
     if (errors && errors.length > 0) {
