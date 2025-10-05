@@ -11,25 +11,32 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
-    })
-    .authorization((allow) => [allow.publicApiKey()]),
+    }).authorization((allow) => [allow.publicApiKey()]),
+    
 
 
 
-  Blog: a.customType({
-    title: a.string(),
-    url: a.string(),
-    content: a.string(),
-    author: a.string(),
-    postedDate: a.date(),
-    updateDate: a.date(),
-    summary: a.string(),
-    categories: a.ref('Category').array(),
-  }),
+Blog: a.model({
+  title: a.string(),
+  url: a.string(),
+  content: a.string(),
+  author: a.string(),
+  postedDate: a.date(),
+  updateDate: a.date(),
+  summary: a.string(),
+  categories: a.hasMany("Category", "blogId"), // relationship
+}).authorization((allow) => [allow.publicApiKey()]),
 
-  Category: a.customType({
-    name: a.string(),
-  })
+Category: a.model({
+  name: a.string(),
+  blogId: a.id(), // foreign key
+  blog: a.belongsTo("Blog", "blogId"), // relationship
+}).authorization((allow) => [allow.publicApiKey()]),
+
+  Email: a.model({
+    email: a.string(),
+    sentDate: a.datetime(),
+  }).authorization((allow) => [allow.publicApiKey().to(["create"])]),
 
   
 });
