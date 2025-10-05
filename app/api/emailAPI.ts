@@ -2,6 +2,8 @@ import { client } from '../index';
 
 export async function createEmail(email: string) {
   try {
+    const isoString = new Date().toISOString();
+    const sentDate = new Date(isoString);
     const { data: createdEmail, errors } = await client.models.Email.create({
       email,
       sentDate: new Date().toISOString(),
