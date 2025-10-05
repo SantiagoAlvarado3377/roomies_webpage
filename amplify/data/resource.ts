@@ -35,7 +35,7 @@ Category: a.model({
 
   Email: a.model({
     email: a.string(),
-    sentDate: a.date(),
+    sentDate: a.datetime(),
   }).authorization((allow) => [allow.publicApiKey().to(["create"])]),
 
   
